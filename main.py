@@ -1,19 +1,20 @@
 import os
 import tkinter as tk
-from infrastructure.repository import TextRoomRepository
+from infrastructure.repository import TextRoomRepository, BookingRepository, InvoiceRepository
 from application.hotel_service import HotelService
 from ui.dashboard import HotelApp
 
 if __name__ == "__main__":
-    # Tạo thư mục data nếu chưa có
     if not os.path.exists("data"):
         os.makedirs("data")
 
-    # Khởi tạo Repository (có thể đổi sang JsonRoomRepository nếu muốn)
-    repo = TextRoomRepository("data/rooms.txt")
+    # Quản lý 3 file tách biệt
+    room_repo = TextRoomRepository("data/rooms.txt")
+    booking_repo = BookingRepository("data/bookings.txt")
+    invoice_repo = InvoiceRepository("data/invoices.txt")
     
-    # Khởi tạo Service
-    service = HotelService(repo)
+    # Inject dependencies
+    service = HotelService(room_repo, booking_repo, invoice_repo)
     
     # Khởi tạo GUI
     root = tk.Tk()

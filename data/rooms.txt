@@ -1,2 +1,2 @@
-123|a|22222.0|Đã đặt|le van gnueyn
-1234|2|22222.0|Đã đặt|le van gnueyn
+123|Standard|200000.0|4
+1234|Standard|100000.0|2
