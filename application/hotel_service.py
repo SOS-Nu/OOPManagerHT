@@ -19,7 +19,7 @@ class HotelService:
     def _sync_bookings(self) -> None:
         self.booking_repo.save_all(list(self.bookings_dict.values()))
 
-    # ================= QUẢN LÝ PHÒNG =================
+    # quan ly phong
     def get_room(self, room_id: str) -> Optional[Room]:
         return self.rooms_dict.get(room_id)
 
@@ -51,7 +51,7 @@ class HotelService:
             del self.rooms_dict[room_id]
             self._sync_rooms()
 
-    # ================= QUẢN LÝ ĐẶT PHÒNG & HÓA ĐƠN =================
+    #quan ly dat phong hoa don
     def get_all_bookings(self) -> List[Booking]:
         return list(self.bookings_dict.values())
 
@@ -98,7 +98,7 @@ class HotelService:
         """Tải toàn bộ hóa đơn cho giao diện UI"""
         return self.invoice_repo.load_all()
 
-    # ================= TIỆN ÍCH =================
+    # extention
     def get_room_status(self, room_id: str) -> str:
         is_booked = any(b.get_room_id() == room_id for b in self.bookings_dict.values())
         return "Đã thuê" if is_booked else "Trống"

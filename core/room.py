@@ -17,7 +17,7 @@ class Room:
     def set_capacity(self, value: int) -> None: self.__capacity = int(value)
 
     def calculate_checkout_price(self, days: int) -> float:
-        """Phương thức tính tổng tiền lưu trú (Đa hình)"""
+        """Phương thức tính tổng tiền lưu trú dựa trên số ngày và giá phòng"""
         return self.__price * days
 
 class StandardRoom(Room):

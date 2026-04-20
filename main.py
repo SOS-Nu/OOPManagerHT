@@ -8,7 +8,7 @@ if __name__ == "__main__":
     if not os.path.exists("data"):
         os.makedirs("data")
 
-    # Quản lý 3 file tách biệt
+    #crud 3 file 
     room_repo = TextRoomRepository("data/rooms.txt")
     booking_repo = BookingRepository("data/bookings.txt")
     invoice_repo = InvoiceRepository("data/invoices.txt")
@@ -16,7 +16,7 @@ if __name__ == "__main__":
     # Inject dependencies
     service = HotelService(room_repo, booking_repo, invoice_repo)
     
-    # Khởi tạo GUI
+    # init tạo GUI
     root = tk.Tk()
     app = HotelApp(root, service)
     

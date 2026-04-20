@@ -18,15 +18,15 @@ class HotelApp:
         self.notebook = ttk.Notebook(self.root)
         self.notebook.pack(fill="both", expand=True, padx=10, pady=10)
 
-        # ================= TAB 1: QUẢN LÝ PHÒNG & ĐẶT PHÒNG =================
+        #tab1 quan ly va dat phong
         self.tab1 = ttk.Frame(self.notebook)
         self.notebook.add(self.tab1, text="Quản lý Hiện Tại")
 
-        # ---------------- PANELS ----------------
+        # pannel
         top_frame = tk.Frame(self.tab1)
         top_frame.pack(fill="x", padx=10, pady=5)
         
-        # PANEL 1: THÔNG TIN PHÒNG
+        # info room
         f_room = tk.LabelFrame(top_frame, text="Thông tin Phòng (rooms.txt)", padx=10, pady=10)
         f_room.pack(side="left", fill="both", expand=True, padx=5)
 
@@ -52,7 +52,7 @@ class HotelApp:
         tk.Button(btn_room_f, text="Lưu Phòng", bg="#28a745", fg="white", command=self.save_room, width=10).pack(side="left", padx=5)
         tk.Button(btn_room_f, text="Xóa Phòng", bg="#dc3545", fg="white", command=self.delete_room, width=10).pack(side="left", padx=5)
 
-        # PANEL 2: THÔNG TIN ĐẶT PHÒNG
+        # infor booking room
         f_book = tk.LabelFrame(top_frame, text="Thông tin Đặt Phòng (bookings.txt)", padx=10, pady=10)
         f_book.pack(side="right", fill="both", expand=True, padx=5)
 
@@ -77,7 +77,7 @@ class HotelApp:
         tk.Button(btn_book_f, text="Đặt Phòng", bg="#007bff", fg="white", command=self.book_room, width=10).pack(side="left", padx=5)
         tk.Button(btn_book_f, text="Trả Phòng (Tính HĐ)", bg="#ffc107", command=self.checkout, width=18).pack(side="left", padx=5)
 
-        # ---------------- VIEW TABLE ----------------
+        # view table
         self.tree = ttk.Treeview(self.tab1, columns=(1,2,3,4,5,6,7,8,9), show="headings", height=15)
         cols = ["Mã Phòng", "Loại", "Giá", "Sức Chứa", "Trạng Thái", "Mã Đặt", "Tên Khách", "Số Khách", "Số Đêm"]
         widths = [80, 80, 100, 80, 100, 80, 120, 80, 80]
@@ -86,11 +86,11 @@ class HotelApp:
             self.tree.column(i, width=w, anchor="center")
         self.tree.pack(fill="both", expand=True, padx=10, pady=10)
         
-        # Bắt sự kiện double click
+        #event dobule click
         self.tree.bind('<Double-1>', self.on_double_click)
 
 
-        # ================= TAB 2: LỊCH SỬ HÓA ĐƠN =================
+        # history invoice
         self.tab2 = ttk.Frame(self.notebook)
         self.notebook.add(self.tab2, text="Danh sách Hóa Đơn")
 
@@ -110,7 +110,7 @@ class HotelApp:
         self.notebook.bind("<<NotebookTabChanged>>", self.on_tab_changed)
 
 
-    # ================= LOGIC TAB 1 =================
+    # logic tab 1
     def on_double_click(self, event):
         try:
             selected = self.tree.selection()
@@ -227,7 +227,7 @@ class HotelApp:
         except Exception as e:
             messagebox.showerror("Lỗi", str(e))
 
-    # ================= LOGIC TAB 2 =================
+    # logic tab 2
     def on_tab_changed(self, event):
         """Khi bấm sang Tab 2, tự động tải lại danh sách hóa đơn"""
         selected_tab = event.widget.select()
